@@ -1,5 +1,5 @@
                        
-					   Assignment-10(DS)Stack and Queue
+				      Assignment-10(DS)Stack and Queue
 				  ******************************************
 				  
 	Question.1:[Implement a stack and perfrom operation push,pop]
