@@ -1,0 +1,442 @@
+                       
+					   Assignment-10(DS)Stack and Queue
+				  ******************************************
+				  
+	Question.1:[Implement a stack and perfrom operation push,pop]
+	
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *top=0;
+void push()
+{
+int x;
+printf("\nEnter data :");
+scanf("%d",&x);
+struct node *newnode;
+newnode=(struct node*)malloc(sizeof(struct node));
+newnode->data=x;
+newnode->next=top;
+top=newnode;
+}
+void display()
+{ struct node *temp;
+temp=top;
+if(temp==0)
+{
+    printf("stack is empty");
+}
+else
+{
+    while(temp!=0)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+}
+void pop()
+{ struct node *temp;
+temp=top;
+    if(top==0)
+    {
+        printf("underflow");
+
+    }
+    else
+    {
+        printf("poped element is :%d",top->data);
+        top=top->next;
+        free(temp);
+
+    }
+
+}
+void peek()
+{
+    if(top==0)
+    {
+        printf("Stack is empty");
+    }
+    else
+    {
+        printf("Peek element :%d",top->data);
+    }
+}
+void main()
+{ int choice;
+while(1)
+{
+ printf("\nStack operation\n1.push\n2.pop\n3.display\n4.peek\n5.exit");
+ printf("\nEnter your choice :");
+ scanf("%d",&choice);
+ switch(choice)
+ {
+ case 1:
+    push();
+    break;
+ case 2:
+     pop();
+     break;
+case 3:
+    display();
+    break;
+case 4:
+    peek();
+    break;
+case 5:
+    exit(1);
+    break;
+default :
+    printf("Invalid choice");
+    break;
+ }
+}
+}
+    
+    Question.2:[Insert the string in an stack condition:ignore white spaces]
+	
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+    int i,j;
+    char st[100];
+    gets(st);
+    for(i=0;i<strlen(st);i++)
+    {
+        if(st[i]==' ')
+        {
+            for(j=i;j<strlen(st);j++)
+            {
+                st[j]=st[j+1];
+            }
+        }
+        if(st[i]>='A'&&st[i]<='Z')
+        {
+            st[i]=st[i]+32;
+        }
+    }
+    puts(st);
+
+}
+INPUT-
+my name is shivani katiyar persuing MCA from BHU
+OUTPUT-
+mynameisshivanikatiyarpersuingmcafrombhu
+
+    Question.3:(i) [ Array Implement of Stack]
+	
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define size 4
+int stack[size];
+int top=-1;
+void push()
+{
+int x;
+printf("\nEnter data :");
+scanf("%d",&x);
+if(top==size-1)
+{
+    printf("Overflow");
+}
+else
+{
+    top++;
+    stack[top]=x;
+
+}
+}
+void display()
+{
+    int i;
+if(top==-1)
+{
+    printf("Stack is empty");
+}
+else
+{
+    for(i=top;i>=0;i--)
+    {
+        printf("%d ",stack[i]);
+    }
+}
+}
+void pop()
+{
+    if(top==-1)
+    {
+        printf("Underflow");
+
+    }
+    else
+    {
+        printf("Poped element is :%d",stack[top]);
+        top--;
+    }
+
+}
+void peek()
+{
+    if(top==-1)
+    {
+        printf("Stack is empty");
+    }
+    else
+    {
+        printf("Peek element :%d",stack[top]);
+    }
+}
+void main()
+{ int choice;
+while(1)
+{
+ printf("\nStack operation\n1.push\n2.pop\n3.display\n4.peek\n5.exit");
+ printf("\nEnter your choice :");
+ scanf("%d",&choice);
+ switch(choice)
+ {
+ case 1:
+    push();
+    break;
+ case 2:
+     pop();
+     break;
+case 3:
+    display();
+    break;
+case 4:
+    peek();
+    break;
+case 5:
+    exit(1);
+    break;
+default :
+    printf("Invalid choice");
+    break;
+ }
+}
+}
+
+  (ii) [ Array Implementation of Queue]
+	
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define n 5
+int queue[n];
+int front=-1,rear=-1;
+void enqueue()
+{
+    int x;
+    printf("\nenter data :");
+    scanf("%d",&x);
+if(rear==-1&&front==-1)
+{
+    front=rear=0;
+    queue[rear]=x;
+}
+else if(rear==n-1)
+{
+    printf("overflow");
+}
+else
+{
+    rear++;
+    queue[rear]=x;
+}
+}
+void display()
+{
+    int i;
+    printf("Queue is :");
+    if(rear==-1&&front==-1)
+    {
+        printf("Queue is empty ");
+    }
+    else
+    {
+        for(i=front;i<=rear;i++)
+        {
+            printf("%d ",queue[i]);
+        }
+    }
+}
+void dequeue()
+{
+    if(rear==-1&&front==-1)
+    {
+        printf("underflow");
+    }
+    else if(front==rear)
+    {
+        front=rear=0;
+    }
+    else
+    {
+        front++;
+    }
+
+
+}
+void peek()
+{
+ if(rear==-1&&front==-1)
+ {
+     printf("empty");
+ }
+ else
+ {
+     printf("peek element :%d",queue[front]);
+ }
+}
+void main()
+{ int ch=1;
+while(1)
+{
+  printf("\n1.enqueue\n2.display\n3.dequeue\n4.peek\n5.exit");
+  printf("\nenter choice :");
+  scanf("%d",&ch);
+  switch(ch)
+  {
+  case 1:
+    enqueue();
+    break;
+  case 2:
+    display();
+    break;
+  case 3:
+      dequeue();
+      break;
+  case 4:
+      peek();
+      break;
+case 5:
+    exit(1);
+    break;
+  default :
+    printf("Invalid choice");
+    break;
+  }
+}
+}	
+	
+	Question.4:[Implements queue and perform operation enque and deque]
+	
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+ struct node *front=0;
+ struct node *rear=0;
+void enqueue()
+{
+    struct node *newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nenter data :");
+    scanf("%d",&newnode->data);
+    newnode->next=0;
+if(rear==0&&front==0)
+{
+rear=front=newnode;
+
+}
+
+else
+{
+rear->next=newnode;
+rear=newnode;
+}
+}
+void display()
+{ struct node *temp;
+temp=front;
+    printf("Queue is :");
+    if(rear==0&&front==0)
+    {
+        printf("Queue is empty ");
+    }
+    else
+    {
+     while(temp!=rear)
+     {
+         printf("%d ",temp->data);
+         temp=temp->next;
+     }
+     printf("%d",temp->data);
+    }
+}
+void dequeue()
+{
+    struct node *temp;
+    temp=front;
+    if(rear==0&&front==0)
+    {
+        printf("underflow");
+    }
+    else if(front==rear)
+    {
+        front=rear=0;
+        free(temp);
+    }
+    else
+    {
+        front=front->next;
+        free(temp);
+    }
+
+
+}
+void peek()
+{
+ if(rear==0&&front==0)
+ {
+     printf("empty");
+ }
+ else
+ {
+     printf("peek element :%d",front->data);
+ }
+}
+void main()
+{ int ch=1;
+while(1)
+{
+  printf("\n1.enqueue\n2.display\n3.dequeue\n4.peek\n5.exit");
+  printf("\nenter choice :");
+  scanf("%d",&ch);
+  switch(ch)
+  {
+  case 1:
+    enqueue();
+    break;
+  case 2:
+    display();
+    break;
+  case 3:
+      dequeue();
+      break;
+  case 4:
+      peek();
+      break;
+case 5:
+    exit(1);
+    break;
+  default :
+    printf("Invalid choice");
+    break;
+  }
+}
+}	
